@@ -1,0 +1,90 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="股票常用术语解释"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A股"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A股是人民币普通股票，由中国境内公司发行，供境内机构、组织或个人以人民币认购和交易的普通股股票。"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="涨停板/跌停板"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="为了防止证券市场上价格暴涨暴跌，避免引起过分投机现象，中国股市对每日股票买卖价格涨跌的限制。普通A股的涨跌幅限制为10%，ST股票的涨跌幅限制为5%。"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="K线图"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="K线图又称蜡烛图，是一种广泛使用的股票技术分析工具，它显示了股票在一定时间内的开盘价、收盘价、最高价和最低价。红色表示收盘价高于开盘价（上涨），绿色表示收盘价低于开盘价（下跌）。"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市盈率 (P/E)"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市盈率是股票价格除以每股收益(EPS)的比率，反映了投资者为获得公司每一单位的收益或盈利而愿意支付多少倍的价格。较高的市盈率通常意味着投资者对公司未来盈利增长有较高期望。"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="换手率"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="换手率是指在一定时间内市场中股票转手买卖的频率，是反映股票流通性强弱的指标之一。计算公式为：换手率 = 某一段时期内的成交量 / 发行总股数 × 100%。"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+</ScrollView>
