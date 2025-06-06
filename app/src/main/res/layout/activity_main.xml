@@ -5,41 +5,104 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center"
     android:background="@android:color/white">
 
-    <Button
-        android:id="@+id/btn_terminology"
+    <!-- 顶部标题区域 -->
+    <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="股票术语"
-        android:drawableLeft="@drawable/baseline_favorite_24"
-        android:drawablePadding="16dp"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"/>
+        android:text="财知道"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="40dp"/>  <!-- 增加标题与图片间距 -->
 
-    <Button
-        android:id="@+id/btn_news"
+    <!-- 内容容器（包含图片和按钮）居中 -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="财经新闻"
-        android:drawableLeft="@drawable/baseline_favorite_24"
-        android:drawablePadding="16dp"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">  <!-- 整体内容居中 -->
 
-    <Button
-        android:id="@+id/btn_stock_simulator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="股票模拟"
-        android:drawableLeft="@drawable/baseline_favorite_24"
-        android:drawablePadding="16dp"
-        android:padding="16dp"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"/>
+        <!-- 图片容器 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="32dp">
+
+            <!-- 左侧图片 -->
+            <ImageView
+                android:id="@+id/iv_jiyi"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+            android:layout_weight="1"
+            android:src="@drawable/jiyi"
+            android:scaleType="fitCenter"
+            android:contentDescription="吉伊图片"
+            android:layout_marginEnd="8dp"/>
+
+            <!-- 右侧图片 -->
+            <ImageView
+                android:id="@+id/iv_wusaqi"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+            android:layout_weight="1"
+            android:src="@drawable/wusaqi"
+            android:scaleType="fitCenter"
+            android:contentDescription="乌萨奇图片"
+            android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- 按钮容器 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp">
+
+            <!-- 按钮1 -->
+            <Button
+                android:id="@+id/btn_terminology"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="股票术语"
+                android:drawableLeft="@drawable/baseline_favorite_24"
+                android:drawablePadding="16dp"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"/>
+
+            <!-- 按钮2 -->
+            <Button
+                android:id="@+id/btn_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="财经新闻"
+                android:drawableLeft="@drawable/baseline_favorite_24"
+                android:drawablePadding="16dp"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"/>
+
+            <!-- 按钮3 -->
+            <Button
+                android:id="@+id/btn_stock_simulator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="股票模拟"
+                android:drawableLeft="@drawable/baseline_favorite_24"
+                android:drawablePadding="16dp"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
