@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 股票信息区域 - 使用card_background样式 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/card_background"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_stock_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tv_price_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"/>
+</LinearLayout>
+
+    <!-- 输入区域 - 使用居中布局 -->
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+<EditText
+android:id="@+id/et_amount"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginBottom="16dp"
+android:background="@drawable/edittext_rounded_background"
+android:hint="请输入购买股数"
+android:inputType="number"
+android:padding="12dp"/>
+
+<EditText
+android:id="@+id/et_commission"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@drawable/edittext_rounded_background"
+android:hint="请输入手续费"
+android:inputType="numberDecimal"
+android:padding="12dp"/>
+
+<Button
+android:id="@+id/btn_calculate"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="center_horizontal"
+android:layout_marginTop="24dp"
+android:background="@drawable/button_primary_background"
+android:padding="12dp"
+android:text="计算总收入"
+android:textSize="16sp"/>
+    </LinearLayout>
+
+    <!-- 结果显示区域 -->
+<TextView
+android:id="@+id/tv_total_income"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="center_horizontal"
+android:layout_marginTop="20dp"
+android:textSize="18sp"
+android:textStyle="bold"/>
+    </LinearLayout>

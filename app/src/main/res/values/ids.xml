@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="lv_stocks" type="id"/>
+    <item name="lv_favorites" type="id"/>
+    <item name="tv_stock_info" type="id"/>
+    <item name="et_amount" type="id"/>
+    <item name="et_commission" type="id"/>
+    <item name="btn_calculate" type="id"/>
+    <item name="tv_total_income" type="id"/>
+</resources>

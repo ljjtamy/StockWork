@@ -1,19 +1,17 @@
 package com.example.stockwork;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import android.graphics.Color;
 
@@ -54,6 +52,11 @@ public class StockSimulatorActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(StockSimulatorActivity.this, "该股票已在收藏夹中", Toast.LENGTH_SHORT).show();
                 }
+
+                // 跳转到计算页面
+                Intent intent = new Intent(StockSimulatorActivity.this, StockCalculationActivity.class);
+                intent.putExtra("stockInfo", selectedStock);
+                startActivity(intent);
             }
         });
 
@@ -66,21 +69,6 @@ public class StockSimulatorActivity extends AppCompatActivity {
                 favoriteAdapter.notifyDataSetChanged();
                 Toast.makeText(StockSimulatorActivity.this, "已从收藏夹移除", Toast.LENGTH_SHORT).show();
             }
-        });
-
-        // 刷新模拟数据按钮
-        Button btnRefresh = findViewById(R.id.btn_refresh); // 你的按钮ID
-        if (btnRefresh == null) {
-            Log.e("StockDebug", "刷新按钮未找到");
-        } else {
-            btnRefresh.setOnClickListener(v -> {
-                Log.d("StockDebug", "刷新按钮被点击");
-                refreshStockData();
-            });
-        }
-        btnRefresh.setOnClickListener(v -> {
-            Log.d("StockDebug", "刷新按钮被点击"); // 加日志
-            refreshStockData(); // 调用刷新方法
         });
     }
 
@@ -103,17 +91,15 @@ public class StockSimulatorActivity extends AppCompatActivity {
                 // 拆分数据，设置文本
                 String[] parts = getItem(position).split(" - ");
                 text1.setText(parts[0]);
-                text2.setText(parts[1]);
+                text2.setText("买入价: " + parts[1] + " 卖出价: " + parts[2]);
 
-                // 处理涨跌幅颜色
-                String[] changeParts = parts[1].split(" ");
-                if (changeParts.length > 1) {
-                    String change = changeParts[1];
-                    if (change.contains("+")) {
-                        text2.setTextColor(Color.GREEN);
-                    } else {
-                        text2.setTextColor(Color.RED);
-                    }
+                // 处理涨跌幅颜色（这里暂时用买入卖出差价模拟，可按需调整）
+                double buyPrice = Double.parseDouble(parts[1]);
+                double sellPrice = Double.parseDouble(parts[2]);
+                if (sellPrice > buyPrice) {
+                    text2.setTextColor(Color.GREEN);
+                } else {
+                    text2.setTextColor(Color.RED);
                 }
 
                 // 最后返回 view
@@ -126,59 +112,15 @@ public class StockSimulatorActivity extends AppCompatActivity {
 
     private void initData() {
         stockList = new ArrayList<>();
-        stockList.add("上证指数 (000001) - ¥3,591.84 +1.02%");
-        stockList.add("深证成指 (399001) - ¥14,870.91 +1.25%");
-        stockList.add("创业板指 (399006) - ¥3,242.61 +2.12%");
-        stockList.add("腾讯控股 (00700.HK) - HK$428.60 +2.34%");
-        stockList.add("阿里巴巴 (BABA) - US$192.58 +1.87%");
-        stockList.add("贵州茅台 (600519) - ¥1,987.00 +0.95%");
-        stockList.add("工商银行 (601398) - ¥5.02 +0.40%");
-        stockList.add("中国石油 (601857) - ¥4.68 +1.30%");
+        stockList.add("上证指数 (000001) - 3591.84 - 3595.84");
+        stockList.add("深证成指 (399001) - 14870.91 - 14880.91");
+        stockList.add("创业板指 (399006) - 3242.61 - 3245.61");
+        stockList.add("腾讯控股 (00700.HK) - 428.60 - 430.60");
+        stockList.add("阿里巴巴 (BABA) - 192.58 - 193.58");
+        stockList.add("贵州茅台 (600519) - 1987.00 - 1990.00");
+        stockList.add("工商银行 (601398) - 5.02 - 5.05");
+        stockList.add("中国石油 (601857) - 4.68 - 4.70");
 
         favoriteList = new ArrayList<>();
-    }
-
-    private void refreshStockData() {
-        // 1. 刷新前，打印当前股票列表
-        Log.d("StockDebug", "刷新前数据: " + stockList);
-
-        // 2. 生成新数据（原来的随机逻辑）
-        List<String> newStockList = new ArrayList<>();
-        for (String stock : stockList) {
-            String[] parts = stock.split(" - ");
-            String nameCode = parts[0];
-            String priceChange = parts[1];
-
-            String[] priceChangeParts = priceChange.split(" ");
-            String priceStr = priceChangeParts[0];
-            String changeStr = priceChangeParts[1];
-
-            // 生成随机涨跌幅（-5% ~ +5% 示例，可调整范围）
-            double randomChange = new Random().nextDouble() * 10 - 5;
-            double currentPrice = Double.parseDouble(priceStr.replaceAll("[^0-9.]", ""));
-            double newPrice = currentPrice * (1 + randomChange / 100);
-
-            // 格式化新价格和涨跌幅
-            String currency = priceStr.contains("¥") ? "¥" :
-                    priceStr.contains("HK$") ? "HK$" : "US$";
-            String newPriceStr = currency + String.format("%.2f", newPrice);
-            String newChangeStr = (randomChange >= 0 ? "+" : "") +
-                    String.format("%.2f%%", randomChange);
-
-            newStockList.add(nameCode + " - " + newPriceStr + " " + newChangeStr);
-        }
-
-        // 3. 替换原数据
-        stockList.clear();
-        stockList.addAll(newStockList);
-
-        // 4. 刷新后，打印新股票列表
-        Log.d("StockDebug", "刷新后数据: " + stockList);
-
-        // 5. 通知适配器更新（关键！）
-        runOnUiThread(() -> {
-            stockAdapter.notifyDataSetChanged();
-            Log.d("StockDebug", "适配器已通知更新");
-        });
     }
 }
