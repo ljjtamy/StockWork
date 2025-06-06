@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import android.graphics.Color;
 
@@ -121,14 +122,25 @@ public class StockSimulatorActivity extends AppCompatActivity {
 
     private void initData() {
         stockList = new ArrayList<>();
-        stockList.add("上证指数 (000001) - 3591.84 - 3595.84");
-        stockList.add("深证成指 (399001) - 14870.91 - 14880.91");
-        stockList.add("创业板指 (399006) - 3242.61 - 3245.61");
-        stockList.add("腾讯控股 (00700.HK) - 428.60 - 430.60");
-        stockList.add("阿里巴巴 (BABA) - 192.58 - 193.58");
-        stockList.add("贵州茅台 (600519) - 1987.00 - 1990.00");
-        stockList.add("工商银行 (601398) - 5.02 - 5.05");
-        stockList.add("中国石油 (601857) - 4.68 - 4.70");
+        List<String> stockNames = new ArrayList<>();
+        stockNames.add("上证指数 (000001)");
+        stockNames.add("深证成指 (399001)");
+        stockNames.add("创业板指 (399006)");
+        stockNames.add("腾讯控股 (00700.HK)");
+        stockNames.add("阿里巴巴 (BABA)");
+        stockNames.add("贵州茅台 (600519)");
+        stockNames.add("工商银行 (601398)");
+        stockNames.add("中国石油 (601857)");
+
+        Random random = new Random();
+        for (String stockName : stockNames) {
+            // 生成随机买入价，范围可以根据实际情况调整
+            double buyPrice = 1 + random.nextDouble() * 2000;
+            // 生成随机卖出价，范围可以根据实际情况调整
+            double sellPrice = buyPrice + (random.nextDouble() - 0.5) * 10;
+            String stockInfo = stockName + " - " + String.format("%.2f", buyPrice) + " - " + String.format("%.2f", sellPrice);
+            stockList.add(stockInfo);
+        }
 
         favoriteList = new ArrayList<>();
     }

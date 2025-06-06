@@ -38,6 +38,11 @@ public class FinancialNewsActivity extends AppCompatActivity {
         news.add("多家银行下调个人账户线上交易限额");
         news.add("6月PMI为50.9% 制造业延续稳定扩张态势");
         news.add("美股三大指数集体收涨 纳指再创历史新高");
+        news.add("财政部发行7500亿元特别国债 票面利率2.48%");
+        news.add("工信部：前5月规模以上电子信息制造业增加值同比增长9.9%");
+        news.add("沪深交易所发布基础设施REITs扩募规则 支持优质资产上市");
+        news.add("银保监会：2025年一季度末银行业总资产同比增长10.6%");
+        news.add("发改委：进一步完善政府猪肉储备调节机制 促进生猪市场平稳运行");
         return news;
     }
 }
