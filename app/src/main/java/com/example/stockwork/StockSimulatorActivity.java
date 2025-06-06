@@ -42,7 +42,7 @@ public class StockSimulatorActivity extends AppCompatActivity {
         favoriteAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, favoriteList);
         lvFavorites.setAdapter(favoriteAdapter);
 
-        // 股票列表项点击事件 - 跳转到计算页面
+        // 跳转到计算页面
         lvStocks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -54,7 +54,7 @@ public class StockSimulatorActivity extends AppCompatActivity {
             }
         });
 
-        // 收藏夹列表项点击事件 - 弹出确认对话框
+        //  弹出确认对话框
         lvFavorites.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -69,6 +69,16 @@ public class StockSimulatorActivity extends AppCompatActivity {
                         })
                         .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
                         .show();
+            }
+        });
+
+        // 添加查看历史记录按钮点击事件
+        Button btnViewHistory = findViewById(R.id.btn_view_history);
+        btnViewHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StockSimulatorActivity.this, StockHistoryActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -140,10 +150,10 @@ public class StockSimulatorActivity extends AppCompatActivity {
 
         Random random = new Random();
         for (String stockName : stockNames) {
-            // 生成随机买入价
+            // 生成随机买入价和卖出价
             double buyPrice = 1 + random.nextDouble() * 2000;
-            // 生成随机卖出价
             double sellPrice = buyPrice + (random.nextDouble() - 0.5) * 10;
+
             String stockInfo = stockName + " - " + String.format("%.2f", buyPrice) + " - " + String.format("%.2f", sellPrice);
             stockList.add(stockInfo);
         }

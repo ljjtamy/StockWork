@@ -18,15 +18,15 @@
         android:textColor="@android:color/black"
         android:gravity="center"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="40dp"/>  <!-- 增加标题与图片间距 -->
+        android:layout_marginBottom="40dp"/>
 
-    <!-- 内容容器（包含图片和按钮）居中 -->
+    <!-- 内容容器居中 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:gravity="center">  <!-- 整体内容居中 -->
+        android:gravity="center">
 
         <!-- 图片容器 -->
         <LinearLayout

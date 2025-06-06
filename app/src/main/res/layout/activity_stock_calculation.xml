@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- 股票信息区域 - 使用card_background样式 -->
+    <!-- 股票信息区域 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
         android:textSize="18sp"
         android:textStyle="bold"/>
 
-    <!-- 输入区域 - 使用居中布局 -->
+    <!-- 输入区域 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

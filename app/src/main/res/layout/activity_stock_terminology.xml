@@ -87,7 +87,6 @@
             android:text="换手率是指在一定时间内市场中股票转手买卖的频率，是反映股票流通性强弱的指标之一。计算公式为：换手率 = 某一段时期内的成交量 / 发行总股数 × 100%。"
             android:layout_marginBottom="10dp"/>
 
-        <!-- 新增术语1 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,7 +101,6 @@
             android:text="市净率是股票价格与每股净资产的比率，它反映了市场对公司净资产质量的评价。一般来说，市净率较低的股票，投资价值较高。"
             android:layout_marginBottom="10dp"/>
 
-        <!-- 新增术语2 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -117,7 +115,6 @@
             android:text="成交量是指在某一特定时期内，股票交易的总手数。它是衡量股票交易活跃程度的重要指标，成交量的大小反映了市场的供需关系。"
             android:layout_marginBottom="10dp"/>
 
-        <!-- 新增术语3 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,7 +129,6 @@
             android:text="蓝筹股是指长期稳定增长的、大型的、传统工业股及金融股。这类公司具有稳定的业绩和较高的分红，通常被视为稳健的投资选择。"
             android:layout_marginBottom="10dp"/>
 
-        <!-- 新增术语4 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -147,7 +143,6 @@
             android:text="多头是指投资者对股市看好，预计股价将会上涨，于是趁低价时买进股票，待股票上涨至某一价位时再卖出，以获取差额收益。空头则相反，是指投资者认为股市前景不佳，预计股价将会下跌，于是将手中股票按目前价格卖出，待股价下跌后再买进，以获取差价利润。"
             android:layout_marginBottom="10dp"/>
 
-        <!-- 新增术语5 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

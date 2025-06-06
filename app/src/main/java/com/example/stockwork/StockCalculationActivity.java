@@ -1,6 +1,7 @@
 package com.example.stockwork;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -58,10 +59,25 @@ public class StockCalculationActivity extends AppCompatActivity {
         double totalIncome = sellPrice * amount * (1 + commission) - buyPrice * amount;
         tvTotalIncome.setText("总收入: " + String.format("%.2f", totalIncome));
 
-        //当收入大于5000时
+        // 插入记录到数据库
+        insertRecordToDatabase(stockInfo, totalIncome);
+
+        // 当收入大于5000时
         if (totalIncome > 5000) {
             showTip();
         }
+    }
+
+    private void insertRecordToDatabase(String stockInfo, double totalIncome) {
+        StockRecordDBHelper dbHelper = new StockRecordDBHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        android.content.ContentValues values = new android.content.ContentValues();
+        values.put(StockRecordDBHelper.StockRecordEntry.COLUMN_STOCK_INFO, stockInfo);
+        values.put(StockRecordDBHelper.StockRecordEntry.COLUMN_TOTAL_INCOME, totalIncome);
+
+        db.insert(StockRecordDBHelper.StockRecordEntry.TABLE_NAME, null, values);
+        db.close();
     }
 
     private void showTip() {
