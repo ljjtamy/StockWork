@@ -59,7 +59,7 @@ public class StockCalculationActivity extends AppCompatActivity {
         tvTotalIncome.setText("总收入: " + String.format("%.2f", totalIncome));
 
         //当收入大于5000时
-        if (totalIncome > 5000) {
+        if (totalIncome > 1000) {
             showTip();
         }
     }

@@ -29,6 +29,16 @@
         android:layout_marginTop="8dp"/>
 </LinearLayout>
 
+    <ImageView
+        android:id="@+id/iv_relax_bear"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/relaxbear"
+        android:scaleType="centerCrop"
+        android:contentDescription="股票轻松熊"/>
+
     <!-- 输入区域 - 使用居中布局 -->
 <LinearLayout
 android:layout_width="match_parent"
@@ -58,8 +68,8 @@ android:padding="12dp"/>
 
 <Button
 android:id="@+id/btn_calculate"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
+android:layout_width="200dp"
+android:layout_height="60dp"
 android:layout_gravity="center_horizontal"
 android:layout_marginTop="24dp"
 android:background="@drawable/button_primary_background"
