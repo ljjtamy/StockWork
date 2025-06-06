@@ -11,19 +11,11 @@
         android:gravity="center_vertical">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="财经新闻"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_weight="1"/>
-
-        <Button
-            android:id="@+id/btn_refresh_news"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="刷新"
-            android:drawableLeft="@android:drawable/ic_menu_rotate"/>
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <ListView
