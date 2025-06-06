@@ -14,8 +14,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import android.graphics.Color;
+import androidx.appcompat.app.AlertDialog;
 
 public class StockSimulatorActivity extends AppCompatActivity {
 
@@ -54,14 +54,21 @@ public class StockSimulatorActivity extends AppCompatActivity {
             }
         });
 
-        // 收藏夹列表项点击事件 - 从收藏夹移除
+        // 收藏夹列表项点击事件 - 弹出确认对话框
         lvFavorites.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedStock = favoriteList.get(position);
-                favoriteList.remove(selectedStock);
-                favoriteAdapter.notifyDataSetChanged();
-                Toast.makeText(StockSimulatorActivity.this, "已从收藏夹移除", Toast.LENGTH_SHORT).show();
+                final String selectedStock = favoriteList.get(position);
+                AlertDialog.Builder builder = new AlertDialog.Builder(StockSimulatorActivity.this);
+                builder.setTitle("确认移除")
+                        .setMessage("您确定要移除收藏吗？")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            favoriteList.remove(selectedStock);
+                            favoriteAdapter.notifyDataSetChanged();
+                            Toast.makeText(StockSimulatorActivity.this, "已从收藏夹移除", Toast.LENGTH_SHORT).show();
+                        })
+                        .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                        .show();
             }
         });
     }
@@ -75,7 +82,7 @@ public class StockSimulatorActivity extends AppCompatActivity {
         ) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                // 先调用父类方法获取 view，后续才能对 view 里的控件操作
+
                 View view = super.getView(position, convertView, parent);
 
                 // 拿到布局里的 tv_stock_name、tv_stock_prices 和 btn_add_to_favorite
@@ -88,7 +95,7 @@ public class StockSimulatorActivity extends AppCompatActivity {
                 tvStockName.setText(parts[0]);
                 tvStockPrices.setText("买入价: " + parts[1] + " 卖出价: " + parts[2]);
 
-                // 处理涨跌幅颜色（这里暂时用买入卖出差价模拟，可按需调整）
+                // 处理涨跌幅颜色
                 double buyPrice = Double.parseDouble(parts[1]);
                 double sellPrice = Double.parseDouble(parts[2]);
                 if (sellPrice > buyPrice) {
@@ -97,7 +104,6 @@ public class StockSimulatorActivity extends AppCompatActivity {
                     tvStockPrices.setTextColor(Color.RED);
                 }
 
-                // 设置按钮点击事件
                 final String selectedStock = getItem(position);
                 btnAddToFavorite.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -134,9 +140,9 @@ public class StockSimulatorActivity extends AppCompatActivity {
 
         Random random = new Random();
         for (String stockName : stockNames) {
-            // 生成随机买入价，范围可以根据实际情况调整
+            // 生成随机买入价
             double buyPrice = 1 + random.nextDouble() * 2000;
-            // 生成随机卖出价，范围可以根据实际情况调整
+            // 生成随机卖出价
             double sellPrice = buyPrice + (random.nextDouble() - 0.5) * 10;
             String stockInfo = stockName + " - " + String.format("%.2f", buyPrice) + " - " + String.format("%.2f", sellPrice);
             stockList.add(stockInfo);
