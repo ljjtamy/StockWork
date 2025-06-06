@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,19 +41,11 @@ public class StockSimulatorActivity extends AppCompatActivity {
         favoriteAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, favoriteList);
         lvFavorites.setAdapter(favoriteAdapter);
 
-        // 股票列表项点击事件 - 添加到收藏夹
+        // 股票列表项点击事件 - 跳转到计算页面
         lvStocks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedStock = stockList.get(position);
-                if (!favoriteList.contains(selectedStock)) {
-                    favoriteList.add(selectedStock);
-                    favoriteAdapter.notifyDataSetChanged();
-                    Toast.makeText(StockSimulatorActivity.this, "已添加到收藏夹", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(StockSimulatorActivity.this, "该股票已在收藏夹中", Toast.LENGTH_SHORT).show();
-                }
-
                 // 跳转到计算页面
                 Intent intent = new Intent(StockSimulatorActivity.this, StockCalculationActivity.class);
                 intent.putExtra("stockInfo", selectedStock);
@@ -75,8 +68,8 @@ public class StockSimulatorActivity extends AppCompatActivity {
     private void setupStockAdapter() {
         stockAdapter = new ArrayAdapter<>(
                 this,
-                android.R.layout.simple_list_item_2,
-                android.R.id.text1,
+                R.layout.list_item_stock,
+                R.id.tv_stock_name,
                 stockList
         ) {
             @Override
@@ -84,23 +77,39 @@ public class StockSimulatorActivity extends AppCompatActivity {
                 // 先调用父类方法获取 view，后续才能对 view 里的控件操作
                 View view = super.getView(position, convertView, parent);
 
-                // 拿到布局里的 text1、text2
-                TextView text1 = view.findViewById(android.R.id.text1);
-                TextView text2 = view.findViewById(android.R.id.text2);
+                // 拿到布局里的 tv_stock_name、tv_stock_prices 和 btn_add_to_favorite
+                TextView tvStockName = view.findViewById(R.id.tv_stock_name);
+                TextView tvStockPrices = view.findViewById(R.id.tv_stock_prices);
+                Button btnAddToFavorite = view.findViewById(R.id.btn_add_to_favorite);
 
                 // 拆分数据，设置文本
                 String[] parts = getItem(position).split(" - ");
-                text1.setText(parts[0]);
-                text2.setText("买入价: " + parts[1] + " 卖出价: " + parts[2]);
+                tvStockName.setText(parts[0]);
+                tvStockPrices.setText("买入价: " + parts[1] + " 卖出价: " + parts[2]);
 
                 // 处理涨跌幅颜色（这里暂时用买入卖出差价模拟，可按需调整）
                 double buyPrice = Double.parseDouble(parts[1]);
                 double sellPrice = Double.parseDouble(parts[2]);
                 if (sellPrice > buyPrice) {
-                    text2.setTextColor(Color.GREEN);
+                    tvStockPrices.setTextColor(Color.GREEN);
                 } else {
-                    text2.setTextColor(Color.RED);
+                    tvStockPrices.setTextColor(Color.RED);
                 }
+
+                // 设置按钮点击事件
+                final String selectedStock = getItem(position);
+                btnAddToFavorite.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!favoriteList.contains(selectedStock)) {
+                            favoriteList.add(selectedStock);
+                            favoriteAdapter.notifyDataSetChanged();
+                            Toast.makeText(StockSimulatorActivity.this, "已添加到收藏夹", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(StockSimulatorActivity.this, "该股票已在收藏夹中", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
                 // 最后返回 view
                 return view;
