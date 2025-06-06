@@ -59,12 +59,12 @@ public class StockCalculationActivity extends AppCompatActivity {
         tvTotalIncome.setText("总收入: " + String.format("%.2f", totalIncome));
 
         //当收入大于5000时
-        if (totalIncome > 1000) {
+        if (totalIncome > 5000) {
             showTip();
         }
     }
 
     private void showTip() {
-        Toast.makeText(this, "恭喜您取得了收获！建议将这支股票加入收藏夹。", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "恭喜您！您的收入已经超过了5000元，建议您将这支股票加入收藏夹。", Toast.LENGTH_LONG).show();
     }
 }
